@@ -1,8 +1,6 @@
 <?php
 session_start();
-
 $bdd = new PDO('mysql:host=127.0.0.1;dbname=life_is_strange', 'root', '');
-
 if(isset($_POST['formconnexion'])) {
    $mailconnect = htmlspecialchars($_POST['mailconnect']);  
    $mdpconnect = sha1($_POST['mdpconnect']);
@@ -40,7 +38,7 @@ if(isset($_POST['formconnexion'])) {
             <input type="email" name="mailconnect" placeholder="Mail" />
             <input type="password" name="mdpconnect" placeholder="Mot de passe" />
             <br /><br />
-            <input type="submit" name="formconnexion" value="Se connecter !" />
+            <button type="submit" name="formconnexion" value="Se connecter !" class='btn btn-dark'>Se connecter !</button>
          </form>
          <?php
          if(isset($erreur)) {
