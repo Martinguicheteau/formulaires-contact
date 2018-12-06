@@ -7,9 +7,9 @@
 
 <br/><br/><br/><br/>
 <center>
-<a href="login.php" title="Life Is Strange 1" > <button type='submit' class='btn btn-dark'>Se Connecter</button></a>
+<a href="login.php" title="inscription" > <button type='submit' class='btn btn-dark'>Se Connecter</button></a>
 
-<a href="register.php" title="Life Is Strange 1" > <button type='submit' class='btn btn-dark'>S'inscrire</button></a>
+<a href="register.php" title="connexion" > <button type='submit' class='btn btn-dark'>S'inscrire</button></a>
 </center>
   </body>
   </html>
