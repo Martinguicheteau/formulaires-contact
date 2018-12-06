@@ -12,7 +12,7 @@ if(isset($_POST['formconnexion'])) {
          $userinfo = $requser->fetch();
          $_SESSION['id'] = $userinfo['id'];
          $_SESSION['mail'] = $userinfo['mail'];
-         header("Location: profil.php?id=".$_SESSION['id']); // envoie vers la page membre
+         header("Location: dashboard.php?id=".$_SESSION['id']); // envoie vers la page membre
          setcookie('mail', "$mailconnect", time() + 365*24*3600);
       } else {
          $erreur = "Mauvais mail ou mot de passe !";
@@ -38,7 +38,7 @@ if(isset($_POST['formconnexion'])) {
             <input type="email" name="mailconnect" placeholder="Mail" />
             <input type="password" name="mdpconnect" placeholder="Mot de passe" />
             <br /><br />
-            <button type="submit" name="formconnexion" value="Se connecter !" class='btn btn-dark'>Se connecter !</button>
+            <a href="dashboard.php" title="Dashboard" > <button type="submit" name="formconnexion" value="Se connecter !" class='btn btn-dark'>Se connecter !</button></a>
          </form>
          <?php
          if(isset($erreur)) {
