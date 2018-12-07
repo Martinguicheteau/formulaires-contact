@@ -1,5 +1,5 @@
 <?php
-$bdd = new PDO('mysql:host=127.0.0.1;dbname=life_is_strange', 'root', ''); //liaison entre le site et la base de donnée
+$bdd = new PDO('mysql:host=127.0.0.1;dbname=formulaire_contacte', 'root', ''); //liaison entre le site et la base de donnée
 if(isset($_POST['forminscription'])) {
    $mail = htmlspecialchars($_POST['mail']);
    $mdp = sha1($_POST['mdp']);
@@ -42,36 +42,31 @@ if(isset($_POST['forminscription'])) {
          <br /><br />
          <form method="POST" action="">
             
-               
-                  
-                  <td align="right">
-                     <label for="mail">Mail :</label>
-                  </td>
-                  <td>
-                     <input type="email" placeholder="Votre mail" id="mail" name="mail" value="<?php if(isset($mail)) { echo $mail; } ?>" /></br>
-                  </td>
-               
-                  <td align="right">
-                     <label for="mdp">Mot de passe :</label>
-                  </td>
-                  <td>
-                     <input type="password" placeholder="Votre mot de passe" id="mdp" name="mdp" /></br>
-                  </td>
+            <td align="right">
+                <label for="mail">Mail :</label>
+             </td>
+            <td>
+                <input type="email" placeholder="Votre mail" id="mail" name="mail" value="<?php if(isset($mail)) { echo $mail; } ?>" /></br>
+            </td> 
+            <td align="right">
+                 <label for="mdp">Mot de passe :</label>
+              </td>
+              <td>
+                 <input type="password" placeholder="Votre mot de passe" id="mdp" name="mdp" /></br>
+                 </td>
                
                
-                  <td align="right" >
-                     <label for="mdp2">Confirmation du mot de passe :</label>
-                  </td>
-                  <td>
-                     <input type="password" placeholder="Confirmez votre mdp" id="mdp2" name="mdp2" /></br>
-                  </td>
-               
-               
-                  <td></td>
-                  <td align="center">
-                     <br />
-                     <button type="submit" name="forminscription" value="Je m'inscris" class='btn btn-dark'>Je m'inscris</button></br>
-                  </td>
+             <td align="right" >
+                 <label for="mdp2">Confirmation du mot de passe :</label>
+               </td>
+                <td>
+                <input type="password" placeholder="Confirmez votre mdp" id="mdp2" name="mdp2" /></br>
+              </td>
+             <td></td>
+             <td align="center">
+              <br />
+                <button type="submit" name="forminscription" value="Je m'inscris" class='btn btn-dark'>Je m'inscris</button></br>
+               </td>
                
             
          </form>

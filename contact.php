@@ -33,32 +33,26 @@ class contact {
     {
         $this->nom = $nom;
     }
-
     public function getPrenom(): int
     {
         return $this->prenom;
     }
-
     public function setPrenom(int $prenom): void
     {
         $this->prenom = $prenom;
     }
-
     public function getTelephone(): string
     {
         return $this->telephone;
     }
-
     public function setTelephone(string $telephone): void
     {
         $this->telephone = $telephone;
     }
-
     public function getMail(): string
     {
         return $this->mail;
     }
-
     public function setMail(string $mail): void
     {
         $this->mail = $mail;

@@ -3,19 +3,14 @@ session_start();
 $id_membres = $_SESSION['id'];
 require_once 'Config.php';
 require_once 'Book.php';
-//setcookie('id_membres', "$id_membre", time() + 365*24*3600);
-var_dump ($_SESSION);
 $books = array();
  try {
     $pdo = new PDO("mysql:host=localhost;port=3306;dbname=formulaire_contacte",
         'root',
         '');
      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-     ///$pdo->exec("INSERT INTO books(nom) VALUES ('?');");
-      ///var_dump("Le dernier book est : " . $pdo->lastInsertId());
      $stmt = $pdo->query("SELECT * FROM books WHERE id_membres=$id_membres;");
  //    var_dump($stmt->fetchObject());
- 
      while (($row = $stmt->fetch(PDO::FETCH_ASSOC)) !== false) {
          $book = new Book(
              $row['id_book'],
@@ -62,10 +57,15 @@ $books = array();
     <?php foreach ($books as $book): ?>
     <tr>
         <td><?= $book->getId() ?></td>
-        <td><a herf="" ><button type="submit" name="book" value="book" class='btn btn-dark'><?= $book->getname() ?></button></a></td>
+        <td><?= $book->getname() ?>
+    </td>
+        <td><a href="liste_contact.php?id=<?php echo $book->getId(); ?>" title="voir_contacte">Voir contacte</a></td>
+	<td>
+    <a href="formulaire_contact.php?id=<?php echo $book->getId(); ?>" title="voir_contacte">Ajouter contacte</a></td>
     </tr>
-    <?php endforeach; ?>
-	</tbody>
+     <?php endforeach; ?>
+    </tbody>
 </table>
+<a href="deconnexion.php">Déconnexion</a>
 </body>
 </html> 

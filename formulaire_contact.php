@@ -1,20 +1,23 @@
-<?php
-$bdd = new PDO('mysql:host=127.0.0.1;dbname=formulaire_contacte', 'root', ''); //liaison entre le site et la base de donnée
 
+<?php
+session_start();
+
+$bdd = new PDO('mysql:host=127.0.0.1;dbname=formulaire_contacte', 'root', ''); //liaison entre le site et la base de donnée
 if(isset($_POST['donnee_contact'])) {
    $nom = htmlspecialchars($_POST['nom']);
    $prenom = htmlspecialchars($_POST['prenom']);
    $telephone = htmlspecialchars($_POST['telephone']);
    $mail = htmlspecialchars($_POST['mail']);
+   $id_book = $_GET['id'];
    if(!empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['telephone']) AND !empty($_POST['mail'])) { 
-      $pseudolength = strlen($pseudo); 
-        $insertmbr = $bdd->prepare("INSERT INTO donnee_contact(nom, prenom, telephone, mail) VALUES(?, ?, ?, ?)");
-        $insertmbr->execute(array($nom, $prenom, $telephone, $mail));                 
+        $insertmbr = $bdd->prepare("INSERT INTO donnee_contact(nom, prenom, telephone, mail, id_book) VALUES(?, ?, ?, ?, ?);");
+        $insertmbr->execute(array($nom, $prenom, $telephone, $mail, $id_book));                 
 }
 ?>
 <?php
 }
 ?>
+
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -26,28 +29,22 @@ if(isset($_POST['donnee_contact'])) {
 </head>
 <body>
     <center>
-    <form>
-    <div class="form-group">
+   <h1> Rajoute un contacte dans ton book !</h1>
+    </br>
+    <form method="POST" action="">
     <label for="nom">Entrer le nom : </label>           
     <input type="text" placeholder="nom" id="nom" name="nom"/>
     </br>
-    </div>
-    <div class="form-group">
     <label for="prenom">Entrer le prénom : </label>
-    <input type="text" placeholder="prenom" id="prenom" name="prenom" />
+    <input type="text" placeholder="prénom" id="prenom" name="prenom" />
     </br>
-    </div> 
-    <div class="form-group">
-    <label for="telephone">Entrer le numéro de télèphone : </label>           
-    <input type="text" placeholder="telephone" id="telephone" name="telephone"/>
+    <label for="telephone">Entrer le numéro de téléphone : </label>           
+    <input type="text" placeholder="téléphone" id="telephone" name="telephone"/>
     </br>
-    </div>
-    <div class="form-group">
     <label for="mail">Entrer l'adresse mail : </label>
     <input type="text" placeholder="mail" id="mail" name="mail" />
     </br>
-    </div>
-    <input type="submit" name="donnee_contact" value="envoyer" />
+    <button type="submit" name="donnee_contact" value="envoyer"class='btn btn-dark'> Rajouter mon contacte ! </button>
 </form>
 </center>
 </body>

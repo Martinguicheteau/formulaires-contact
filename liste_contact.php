@@ -2,6 +2,7 @@
 session_start();
 require_once 'Config.php';
 require_once 'contact.php';
+$id_book = $_GET['id'];
 $Contactes = array();
  try {
     $pdo = new PDO("mysql:host=localhost;port=3306;dbname=formulaire_contacte",
@@ -10,12 +11,11 @@ $Contactes = array();
      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
      //$pdo->exec("INSERT INTO books(nom) VALUES ('pro');");
       ///var_dump("Le dernier book est : " . $pdo->lastInsertId());
-     $stmt = $pdo->query("SELECT * FROM donnee_contact;");
- 
+     $stmt = $pdo->query("SELECT * FROM donnee_contact WHERE id_book=$id_book;");
  //    var_dump($stmt->fetchObject());
  
      while (($row = $stmt->fetch(PDO::FETCH_ASSOC)) !== false) {
-         $Contacte = new Book(
+         $Contacte = new contact(
              $row['id_contact'],
              $row['nom'],
              $row['prenom'],
@@ -45,8 +45,7 @@ $Contactes = array();
 <body>
 	<br><br><br>
 	<center>
-
-	<a herf="" ><button type="submit" name="cree_book" value="cree_book" class='btn btn-dark'><a href=formulaire_contact.php title= formulaire_contact > Nouveau contacte</a></button>
+   
 	<br>Voici vos Contactes ! 
 	</center>
 <br><br>
@@ -71,5 +70,6 @@ $Contactes = array();
     <?php endforeach; ?>
 	</tbody>
 </table>
+<a href="deconnexion.php">Déconnexion</a>
 </body>
 </html> 

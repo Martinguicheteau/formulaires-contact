@@ -1,6 +1,6 @@
 <?php
 session_start();
-$bdd = new PDO('mysql:host=127.0.0.1;dbname=life_is_strange', 'root', '');
+$bdd = new PDO('mysql:host=127.0.0.1;dbname=formulaire_contacte', 'root', '');
 if(isset($_POST['formconnexion'])) {
    $mailconnect = htmlspecialchars($_POST['mailconnect']);  
    $mdpconnect = sha1($_POST['mdpconnect']);
@@ -10,10 +10,9 @@ if(isset($_POST['formconnexion'])) {
       $userexist = $requser->rowCount();
       if($userexist == 1) {
          $userinfo = $requser->fetch();
-         $_SESSION['id'] = $userinfo['id'];
+         $_SESSION['id'] = $userinfo['id_membres'];
          $_SESSION['mail'] = $userinfo['mail'];
          header("Location: dashboard.php?id=".$_SESSION['id']); // envoie vers la page membre
-         setcookie('mail', "$mailconnect", time() + 365*24*3600);
       } else {
          $erreur = "Mauvais mail ou mot de passe !";
       }
@@ -35,8 +34,8 @@ if(isset($_POST['formconnexion'])) {
 		<h2>Connexion</h2>
          <br /><br />
          <form method="POST" action="">
-            <input type="email" name="mailconnect" placeholder="Mail" />
-            <input type="password" name="mdpconnect" placeholder="Mot de passe" />
+            <input type="email" name="mailconnect" placeholder="Email : test@test.fr" />
+            <input type="password" name="mdpconnect" placeholder="Mdp : azerty" />
             <br /><br />
             <a href="dashboard.php" title="Dashboard" > <button type="submit" name="formconnexion" value="Se connecter !" class='btn btn-dark'>Se connecter !</button></a>
          </form>

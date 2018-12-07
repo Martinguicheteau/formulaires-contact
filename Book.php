@@ -2,10 +2,12 @@
 class Book {
     private $id;
     private $name;
-    
+ //   private $id_membres;
+
     public function __construct(int $id, string $name) {
         $this->id = $id;
         $this->name = $name;
+ //       $this->id_membres = $id_membres;
     }
    
     public function getId(): int
@@ -27,4 +29,6 @@ class Book {
     {
         $this->name = $name;
     }
+
+    
 }
