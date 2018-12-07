@@ -1,6 +1,10 @@
 <?php
+session_start();
+$id_membres = $_SESSION['id'];
 require_once 'Config.php';
 require_once 'Book.php';
+//setcookie('id_membres', "$id_membre", time() + 365*24*3600);
+var_dump ($_SESSION);
 $books = array();
  try {
     $pdo = new PDO("mysql:host=localhost;port=3306;dbname=formulaire_contacte",
@@ -10,7 +14,6 @@ $books = array();
      ///$pdo->exec("INSERT INTO books(nom) VALUES ('?');");
       ///var_dump("Le dernier book est : " . $pdo->lastInsertId());
      $stmt = $pdo->query("SELECT * FROM books;");
- 
  //    var_dump($stmt->fetchObject());
  
      while (($row = $stmt->fetch(PDO::FETCH_ASSOC)) !== false) {
@@ -41,15 +44,18 @@ $books = array();
 <body>
 	<br><br><br>
 	<center>
-
-	<a herf="" ><button type="submit" name="cree_book" value="cree_book" class='btn btn-dark'>Crée ton nouveau book ! </button>
-	<br>Voici vos books ! 
+    <form action="cree_book.php" method="post">
+    <input type="text" name="Nom_Book" placeholder="Nom Book" />
+	<a href="cree_book.php" ><button type="submit" name="cree_book" value="cree_book" class='btn btn-dark'>Crée ton nouveau book ! </button></a>
+	<br><br><p>
+        Bonjour [à remplacer] <br>
+     Voici tes books ! Clique sur leur noms pour voir leurs contenues ou le modifier !  </p>
 	</center>
 <br><br>
 	<table class="table">
     <thead>
-        <th>#</th>
-        <th>Name</th>
+        <th>Numéro du Book</th>
+        <th>Nom du Book</th>
     </tr>
     </thead>
     <tbody>
