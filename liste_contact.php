@@ -46,7 +46,7 @@ $Contactes = array();
 	<br><br><br>
 	<center>
 
-	<a herf="" ><button type="submit" name="cree_book" value="cree_book" class='btn btn-dark'>Crée ton nouveau book ! </button>
+	<a herf="" ><button type="submit" name="cree_book" value="cree_book" class='btn btn-dark'><a href=formulaire_contact.php title= formulaire_contact > Nouveau contacte</a></button>
 	<br>Voici vos Contactes ! 
 	</center>
 <br><br>

@@ -34,7 +34,6 @@ class contact {
         $this->nom = $nom;
     }
 
-    }
     public function getPrenom(): int
     {
         return $this->prenom;
