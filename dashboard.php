@@ -13,7 +13,7 @@ $books = array();
      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
      ///$pdo->exec("INSERT INTO books(nom) VALUES ('?');");
       ///var_dump("Le dernier book est : " . $pdo->lastInsertId());
-     $stmt = $pdo->query("SELECT * FROM books;");
+     $stmt = $pdo->query("SELECT * FROM books WHERE id_membres=$id_membres;");
  //    var_dump($stmt->fetchObject());
  
      while (($row = $stmt->fetch(PDO::FETCH_ASSOC)) !== false) {

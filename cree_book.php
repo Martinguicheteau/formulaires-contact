@@ -12,18 +12,18 @@ var_dump ($_SESSION);
         'root',
         '');
      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-     $pdo->exec("INSERT INTO books(nom,id_membres) VALUES ('$Nom_Book,$id_membres');");
+     $pdo->exec("INSERT INTO books(nom,id_membres) VALUES ('$Nom_Book','$id_membres');");
      //var_dump("Le dernier book est : " . $pdo->lastInsertId());
-     $stmt = $pdo->query("SELECT * FROM books;");
+     //$stmt = $pdo->query("SELECT * FROM books;");
     //var_dump($stmt->fetchObject());
  
-     while (($row = $stmt->fetch(PDO::FETCH_ASSOC)) !== false) {
-         $book = new Book(
-             $row['id_book'],
-             $row['nom']
-         );
+     //while (($row = $stmt->fetch(PDO::FETCH_ASSOC)) !== false) {
+     //    $book = new Book(
+      //       $row['id_book'],
+      //       $row['nom']
+       //  );
         // $books[] = $book;
-    }
+    //}
      //var_dump($books);
  //    var_dump($stmt);
 } catch (PDOException $e) {
