@@ -1,42 +1,26 @@
 <?php
 require_once 'Config.php';
 require_once 'Book.php';
- $host = 'localhost'; 
-$port = 3306;
-$database = 'formulaire_contacte';
- $books = array();
-
+$books = array();
  try {
-    $pdo = new PDO("mysql:host=$host;port=$port;dbname=$database",
+    $pdo = new PDO("mysql:host=localhost;port=3306;dbname=formulaire_contacte",
         'root',
         '');
-    $driver = sprintf(
-        "mysql:host=%s;port=%s;dbname=%s",
-        Config::HOST,
-        Config::PORT,
-        Config::DATABASE
-        );
-     $pdo = new PDO(
-        $driver,
-        Config::LOGIN,
-        Config::PASSWORD);
      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-     $pdo->exec("INSERT INTO books (name) VALUES ('famille');");
-    //$pdo->exec("INSERT INTO clients (firstname, lastname) VALUES ('jane', 'die');");
-      var_dump("Le dernier ID est : " . $pdo->lastInsertId());
-     $stmt = $pdo->query("SELECT * FROM book;");
+     ///$pdo->exec("INSERT INTO books(nom) VALUES ('?');");
+      ///var_dump("Le dernier book est : " . $pdo->lastInsertId());
+     $stmt = $pdo->query("SELECT * FROM books;");
  
  //    var_dump($stmt->fetchObject());
  
      while (($row = $stmt->fetch(PDO::FETCH_ASSOC)) !== false) {
-         $books = new Book(
-             $row['id'],
-             $row['name']
+         $book = new Book(
+             $row['id_book'],
+             $row['nom']
          );
- 
-        $books[] = $book;
+         $books[] = $book;
     }
-     var_dump($books);
+     //var_dump($books);
  //    var_dump($stmt);
 } catch (PDOException $e) {
     var_dump($e->getMessage());
@@ -44,34 +28,38 @@ $database = 'formulaire_contacte';
 } finally {
     $pdo = null;
 }
-?>
-
-<!doctype html>
+?><!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>formulaire contacte</title>
+    <title>formulaire contact</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-<table class="table">
+	<br><br><br>
+	<center>
+
+	<a herf="" ><button type="submit" name="cree_book" value="cree_book" class='btn btn-dark'>Crée ton nouveau book ! </button>
+	<br>Voici vos books ! 
+	</center>
+<br><br>
+	<table class="table">
     <thead>
-    <tr>
         <th>#</th>
-        <th>Firstname</th>
+        <th>Name</th>
     </tr>
     </thead>
     <tbody>
     <?php foreach ($books as $book): ?>
     <tr>
-        <td><?= $client->getId() ?></td>
-        <td><?= $client->getFirstname() ?></td>
+        <td><?= $book->getId() ?></td>
+        <td><a herf="" ><button type="submit" name="book" value="book" class='btn btn-dark'><?= $book->getname() ?></button></a></td>
     </tr>
     <?php endforeach; ?>
-    </tbody>
+	</tbody>
 </table>
 </body>
 </html> 
